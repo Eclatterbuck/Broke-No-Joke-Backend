@@ -1,0 +1,28 @@
+{
+  "name": "broke-no-joke-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "watch": "nodemon src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "node.js": "^0.0.1-security",
+    "nodemon": "^2.0.15",
+    "server.js": "^1.0.0",
+    "mongoose": "^6.1.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eclatterbuck/Broke-No-Joke-Backend.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Eclatterbuck/Broke-No-Joke-Backend/issues"
+  },
+  "homepage": "https://github.com/Eclatterbuck/Broke-No-Joke-Backend#readme",
+  "description": ""
+}

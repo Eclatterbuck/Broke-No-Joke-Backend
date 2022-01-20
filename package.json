@@ -1,26 +1,17 @@
 {
-  "name": "broke-no-joke-backend",
+  "name": "expenses-tracker",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    
-    "start": "node server.js"
+    "server": "npm run watch --prefix server",
+    "client": "npm run start --prefix client",
+    "watch": "npm run server"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2",
-    "node.js": "^0.0.1-security",
-    "server.js": "^1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Eclatterbuck/Broke-No-Joke-Backend.git"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/Eclatterbuck/Broke-No-Joke-Backend/issues"
-  },
-  "homepage": "https://github.com/Eclatterbuck/Broke-No-Joke-Backend#readme",
-  "description": ""
+    "mongoose": "^6.1.7"
+  }
 }
