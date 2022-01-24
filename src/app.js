@@ -1,7 +1,9 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const dbConnect = require("./src/dbConnect");
+
 // const { registerUser } = require("./controllers/users/usersCtrl");
-const { errorHandler } = require("./middlewares/errorMiddleware");
+const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 const userRoute = require("./routes/users/usersRoute");
 const app = express();
 
@@ -13,6 +15,9 @@ const logger = (req, res, next) =>{
     next();
 };
 
+//environment
+dotenv.config();
+
 //dbConnect
 dbConnect();
 
@@ -20,10 +25,16 @@ dbConnect();
 app.use(express.json());
 
 
-//routes
-app.use('/', userRoute);
+// user routes
+app.use("/api/users", userRoute);
+
+//income routes
+
+app.use("/api/income", incomeRoute);
+
 
 //Error Handler
+app.use(notFound);
 app.use(errorHandler);
 
 

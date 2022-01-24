@@ -1,3 +1,5 @@
+/////DEPENDENCIES
+
 const http = require("http");
 const { PORT = 3000, DATABASE_URL } = process.env
 // const PORT = process.env || 3000
@@ -7,6 +9,9 @@ const express = require('express')
 const app = express();
 // import mongoose
 const mongoose = require('mongoose')
+
+// get .env variables
+require('dotenv').config()
 
 ///////////////////////////////
 // DATABASE CONNECTION

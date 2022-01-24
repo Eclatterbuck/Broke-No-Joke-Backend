@@ -1,4 +1,5 @@
 const mongoose = require("mongoose"); //used to model our data
+const bcrypt = require("bcryptjs");
 
 //schema gives blueprints
 
@@ -26,6 +27,25 @@ const userSchema = mongoose.Schema({
     },{
         timestamp: true,
 });
+
+// Method to set salt and hash the password for a user 
+//Salt is used to hash user passwords.
+
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+//Password Verification compare was used to compare what user entered.
+
+userSchema.methods.isPasswordMatch = async function (enteredPassword){
+  return await bcrypt.compare(enteredPassword, this.password);
+}
+
 
 
 //compiling schema into model and passing in User schema

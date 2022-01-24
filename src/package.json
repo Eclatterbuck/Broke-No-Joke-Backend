@@ -9,11 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
+    "dotenv": "^14.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.7",
     "node.js": "^0.0.1-security",
     "nodemon": "^2.0.15",
-    "server.js": "^1.0.0",
-    "mongoose": "^6.1.7"
+    "server.js": "^1.0.0"
+  
   },
   "repository": {
     "type": "git",
