@@ -1,8 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require("cors");
+
 const dbConnect = require("./src/dbConnect");
 
-// const { registerUser } = require("./controllers/users/usersCtrl");
+
+
 const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 const userRoute = require("./routes/users/usersRoute");
 const incomeRoute = require("./routes/income/incomeRoutes");
@@ -26,6 +29,7 @@ dbConnect();
 
 //middlewares
 app.use(express.json());
+app.use(cors());
 
 
 // user routes
