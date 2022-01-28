@@ -20,17 +20,31 @@ const userSchema = mongoose.Schema({
         required: [true, "Pasword name is needed"],
         type: String,
       },
-    //   isAdmin: {
-    //     type: Boolean,
-    //     default: false,
-    //   },
+      isAdmin: {
+        type: Boolean,
+        default: false,
+      },
     },{
         timestamp: true,
 });
 
+//virtual
+userSchema.virtual("expenses", {
+  ref: "Expense",
+  foreignField: "user",
+  localField: "_id",
+});
+
+userSchema.virtual("income", {
+  ref: "Income",
+  foreignField: "user",
+  localField: "_id",
+});
+
+//Hash password
+
 // Method to set salt and hash the password for a user 
 //Salt is used to hash user passwords.
-
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -40,14 +54,12 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-//Password Verification compare was used to compare what user entered.
-
-userSchema.methods.isPasswordMatch = async function (enteredPassword){
+// //Password Verification compare was used to compare what user entered.
+userSchema.methods.isPasswordMatch = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
-}
-
-
+};
 
 //compiling schema into model and passing in User schema
 const User = mongoose.model("User", userSchema);
 module.exports = User;
+

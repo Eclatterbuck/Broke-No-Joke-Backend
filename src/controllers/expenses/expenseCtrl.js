@@ -1,8 +1,7 @@
 const expressAsyncHandler = require("express-async-handler");
 const Expense = require("../../model/Expense");
 
-//create expense
-
+//create
 const createExpCtrl = expressAsyncHandler(async (req, res) => {
   console.log(req.user);
   const { title, amount, description } = req.body;
@@ -19,8 +18,7 @@ const createExpCtrl = expressAsyncHandler(async (req, res) => {
   }
 });
 
-//fetch all expenses
-
+//fetch all income
 const fetchAllExpCtrl = expressAsyncHandler(async (req, res) => {
   const { page } = req?.query;
   try {
@@ -34,8 +32,7 @@ const fetchAllExpCtrl = expressAsyncHandler(async (req, res) => {
   }
 });
 
-//fetch single expense
-
+//fetch single income
 const fetchExpDetailsCtrl = expressAsyncHandler(async (req, res) => {
   const { id } = req?.params;
 
@@ -47,7 +44,8 @@ const fetchExpDetailsCtrl = expressAsyncHandler(async (req, res) => {
   }
 });
 
-//update expenses
+//update
+
 
 const updateExpCtrl = expressAsyncHandler(async (req, res) => {
   const { id } = req?.params;
@@ -68,8 +66,8 @@ const updateExpCtrl = expressAsyncHandler(async (req, res) => {
   }
 });
 
-//delete expenses
 
+//delete
 
 const deleteExpCtrl = expressAsyncHandler(async (req, res) => {
   const { id } = req?.params;

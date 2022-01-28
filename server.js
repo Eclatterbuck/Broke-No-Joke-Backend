@@ -1,12 +1,14 @@
 /////DEPENDENCIES
 
 const http = require("http");
+
 const { PORT = 3000, DATABASE_URL } = process.env
 // const PORT = process.env || 3000
 // import express from 'express
 const express = require('express')
 // create application object 
 const app = express();
+// const app = require("./app");
 // import mongoose
 const mongoose = require('mongoose')
 

@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 //schema
+
+
 const expenseSchema = mongoose.Schema(
   {
     title: {
@@ -38,7 +40,7 @@ const expenseSchema = mongoose.Schema(
     },
     toObject: {
       virtuals: true,
-    }
+    },
     }
    
 );

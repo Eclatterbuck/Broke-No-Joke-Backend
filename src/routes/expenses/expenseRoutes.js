@@ -1,14 +1,12 @@
-
 const express = require("express");
 
-
 const {
-    createExpCtrl,
-    fetchAllExpCtrl,
-    fetchExpDetailsCtrl,
-    updateExpCtrl,
-    deleteExpCtrl,
-} = require("../../controllers/income/incomeCtrl");
+  createExpCtrl,
+  fetchAllExpCtrl,
+  fetchExpDetailsCtrl,
+  updateExpCtrl,
+  deleteExpCtrl,
+} = require("../../controllers/expenses/expenseCtrl");
 
 const authMiddleware = require("../../middlewares/authMiddleware");
 
@@ -21,8 +19,4 @@ expenseRoute.put("/:id", authMiddleware, updateExpCtrl);
 expenseRoute.delete("/:id", authMiddleware, deleteExpCtrl);
 
 
-
 module.exports = expenseRoute;
-
-
-

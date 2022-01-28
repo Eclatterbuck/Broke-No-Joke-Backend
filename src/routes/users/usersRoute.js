@@ -1,12 +1,28 @@
-const express = require('express');
-const { registerUser, fetchUsersCtrl, loginUserCtrl, } = require("./controllers/users/usersCtrl")
+
+
+const express = require("express");
+
+const {
+  registerUser,
+  fetchUsersCtrl,
+  loginUserCtrl,
+  userProfileCtrl,
+  updateUserCtrl,
+} = require("../../controllers/users/usersCtrl");
+
+
+const authMiddleware = require("../../middlewares/authMiddleware");
+
 const userRoute = express.Router();
 
 //calling controller function
-userRouter.post("/register", registerUser);
-userRouter.post("/login", loginUserCtrl);
-userRoute.get("/users", fetchUsersCtrl);
 
+userRoute.post("/register", registerUser);
+userRoute.get("/profile", authMiddleware, userProfileCtrl);
+userRoute.put("/update", authMiddleware, updateUserCtrl);
+userRoute.post("/login", loginUserCtrl);
+userRoute.get("/", authMiddleware, fetchUsersCtrl);
 
 
 module.exports = userRoute;
+
