@@ -1,6 +1,8 @@
 /////DEPENDENCIES
 
-const http = require("http");
+// const http = require("http");
+// get .env variables
+require('dotenv').config()
 
 const { PORT = 3000, DATABASE_URL } = process.env
 // const PORT = process.env || 3000
@@ -12,8 +14,7 @@ const app = express();
 // import mongoose
 const mongoose = require('mongoose')
 
-// get .env variables
-require('dotenv').config()
+
 
 ///////////////////////////////
 // DATABASE CONNECTION
@@ -42,7 +43,7 @@ mongoose.connection
 
 
 
-const server = http.createServer(app); //passing in Express to make it advance
+// const server = http.createServer(app); //passing in Express to make it advance
 
-server.listen(PORT, console.log(`Server is running on port ${PORT}`))
-
+// server.listen(PORT, console.log(`Server is running on port ${PORT}`))
+app.listen(PORT, () => console.log(`listening on PORT ${PORT}`))
