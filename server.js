@@ -1,20 +1,39 @@
 /////DEPENDENCIES
 
-// const http = require("http");
 // get .env variables
-require('dotenv').config()
+require('dotenv').config();
+// pull PORT from .env, give default value of 3001
+const { PORT = 3000, DATABASE_URL } = process.env;
 
-const { PORT = 3000, DATABASE_URL } = process.env
-// const PORT = process.env || 3000
-// import express from 'express
-const express = require('express')
-// create application object 
-const app = express();
-// const app = require("./app");
+const express = require('express');
+const dotenv = require('dotenv');
+// const colors = require('colors')
+const morgan = require('morgan');
+// const connectDB = require('./config/db')
+const path = require('path')
 // import mongoose
 const mongoose = require('mongoose')
 
+// dotenv.config({path: './config/config.env'})
 
+// connectDB();
+
+const transactions = require('./routes/transactions')
+
+const app = express()
+app.use(express.json())
+
+if(process.env.NODE_ENV === 'development'){
+     app.use(morgan('dev'))
+}
+
+app.use('/api/v1/transactions', transactions)
+
+if(process.env.NODE_ENV === 'production'){
+     app.use(express.static('../client/build'))
+     app.get('*', (req, res) => res.sendfile(path.resolve('client'
+     ,'build', 'index.html')))
+}
 
 ///////////////////////////////
 // DATABASE CONNECTION
@@ -27,23 +46,7 @@ mongoose.connection
   .on("close", () => console.log("You are disconnected from MongoDB"))
   .on("error", (error) => console.log(error))
 
-//   const dbConnect = async () => {
-//     try {
-//       await mongoose.connect(process.env.MONGO_URL, {   
-//         useUnifiedTopology: true,
-//         useNewUrlParser: true,
-//       });
-//       console.log(`DB connected Successfully`);
-//     } catch (error) {
-//       console.log(`Error ${error.message}`);
-//     }
-//   };
-  
-//   module.exports = dbConnect;
 
-
-
-// const server = http.createServer(app); //passing in Express to make it advance
 
 // server.listen(PORT, console.log(`Server is running on port ${PORT}`))
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`))
